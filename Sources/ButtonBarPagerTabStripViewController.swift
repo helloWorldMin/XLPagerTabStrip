@@ -312,8 +312,8 @@ open class ButtonBarPagerTabStripViewController: PagerTabStripViewController, Pa
 
         collectionViewDidLoad = true
 
-        let childController = viewControllers[indexPath.item] as? IndicatorInfoProvider  ?? IndicatorInfo(title: "")// swiftlint:disable:this force_cast
-        let indicatorInfo = childController.indicatorInfo(for: self)
+//      let childController = viewControllers[indexPath.item] as? IndicatorInfoProvider // swiftlint:disable:this force_cast
+        let indicatorInfo = IndicatorInfo(title: "")
 
         cell.label.text = indicatorInfo.title
         cell.label.font = settings.style.buttonBarItemFont
@@ -364,8 +364,9 @@ open class ButtonBarPagerTabStripViewController: PagerTabStripViewController, Pa
         var collectionViewContentWidth: CGFloat = 0
 
         for viewController in viewControllers {
-            let childController = viewController as? IndicatorInfoProvider ?? IndicatorInfo(title: "") // swiftlint:disable:this force_cast
-            let indicatorInfo = childController.indicatorInfo(for: self)
+//            let childController = viewController as? IndicatorInfoProvider ?? IndicatorInfo(title: "") // swiftlint:disable:this force_cast
+            let indicatorInfo = IndicatorInfo(title: "")
+//              childController.indicatorInfo(for: self)
             switch buttonBarItemSpec! {
             case .cellClass(let widthCallback):
                 let width = widthCallback(indicatorInfo)
