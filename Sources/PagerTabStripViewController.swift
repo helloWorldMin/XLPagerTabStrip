@@ -178,8 +178,8 @@ open class PagerTabStripViewController: UIViewController, UIScrollViewDelegate {
     // MARK: - PagerTabStripDataSource
 
     open func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
-        assertionFailure("Sub-class must implement the PagerTabStripDataSource viewControllers(for:) method")
-        return []
+//        assertionFailure("Sub-class must implement the PagerTabStripDataSource viewControllers(for:) method")
+      return self.viewControllers
     }
 
     // MARK: - Helpers
