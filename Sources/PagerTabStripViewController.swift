@@ -58,7 +58,7 @@ open class PagerTabStripViewController: UIViewController, UIScrollViewDelegate {
 
     open var pagerBehaviour = PagerTabStripBehaviour.progressive(skipIntermediateViewControllers: true, elasticIndicatorLimit: true)
 
-    open var viewControllers = [UIViewController]()
+    open private(set) var viewControllers = [UIViewController]()
     open private(set) var currentIndex = 0
     open private(set) var preCurrentIndex = 0 // used *only* to store the index to which move when the pager becomes visible
 
@@ -102,7 +102,7 @@ open class PagerTabStripViewController: UIViewController, UIScrollViewDelegate {
         containerView.showsVerticalScrollIndicator = false
         containerView.showsHorizontalScrollIndicator = false
         containerView.isPagingEnabled = true
-//        reloadViewControllers()
+        reloadViewControllers()
 
         let childController = viewControllers[currentIndex]
         addChild(childController)
@@ -178,8 +178,8 @@ open class PagerTabStripViewController: UIViewController, UIScrollViewDelegate {
     // MARK: - PagerTabStripDataSource
 
     open func viewControllers(for pagerTabStripController: PagerTabStripViewController) -> [UIViewController] {
-//        assertionFailure("Sub-class must implement the PagerTabStripDataSource viewControllers(for:) method")
-      return self.viewControllers
+        assertionFailure("Sub-class must implement the PagerTabStripDataSource viewControllers(for:) method")
+        return []
     }
 
     // MARK: - Helpers
@@ -381,7 +381,7 @@ open class PagerTabStripViewController: UIViewController, UIScrollViewDelegate {
         guard !viewControllers.isEmpty else {
             fatalError("viewControllers(for:) should provide at least one child view controller")
         }
-        viewControllers.forEach { if !($0 is IndicatorInfoProvider) { fatalError("Every view controller provided by PagerTabStripDataSource's viewControllers(for:) method must conform to IndicatorInfoProvider") }}
+//        viewControllers.forEach { if !($0 is IndicatorInfoProvider) { fatalError("Every view controller provided by PagerTabStripDataSource's viewControllers(for:) method must conform to IndicatorInfoProvider") }}
 
     }
 
